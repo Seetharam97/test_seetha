@@ -25,6 +25,16 @@ router.get("/getAllStudentMark", async(req, res)=>{
     }
 });
 
+// get method or fetch
+router.get("/getStudentMarkDetails", async(req, res)=>{
+    try {
+        const result = await markModel.find({roll_no: req.query.roll_no})
+        res.status(200).json({"status": "suceess", message: "Mark detals fetched successfully!", result: result})
+    } catch (error) {
+        res.status(500).json({"status": "failure", "message": error.message })
+    }
+});
+
 // get individual student marks
 router.get("/getIndividualStudentMark", async(req, res)=>{
     try {
